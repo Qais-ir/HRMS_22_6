@@ -3,6 +3,7 @@ using HRMS.Dtos.Employees;
 using HRMS.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Runtime.Intrinsics.Arm;
 namespace HRMS.Controllers
 {
@@ -63,22 +64,22 @@ namespace HRMS.Controllers
         [HttpGet("{id:long}")] // Route Parameter
         public IActionResult GetById(long id)
         {
-          //  var data = _dbContext.Employees.Join(
-          //    _dbContext.Departments,
-          //    employee => employee.DepartmentId,
-          //    department => department.Id,
-          //    (employee, department) => new EmployeeDto
-          //    {
-          //        Id = employee.Id,
-          //        Name = employee.FirstName + " " + employee.LastName,
-          //        Position = employee.Position,
-          //        BirthDate = employee.BirthDate,
-          //        StartDate = employee.StartDate,
-          //        EndDate = employee.EndDate,
-          //        DepartmentId = employee.DepartmentId,
-          //        DepartmentName = department.Name,
-          //    }
-          //).FirstOrDefault(x => x.Id == id);
+            //  var data = _dbContext.Employees.Join(
+            //    _dbContext.Departments,
+            //    employee => employee.DepartmentId,
+            //    department => department.Id,
+            //    (employee, department) => new EmployeeDto
+            //    {
+            //        Id = employee.Id,
+            //        Name = employee.FirstName + " " + employee.LastName,
+            //        Position = employee.Position,
+            //        BirthDate = employee.BirthDate,
+            //        StartDate = employee.StartDate,
+            //        EndDate = employee.EndDate,
+            //        DepartmentId = employee.DepartmentId,
+            //        DepartmentName = department.Name,
+            //    }
+            //).FirstOrDefault(x => x.Id == id);
 
             //var data = employees.SingleOrDefault(x => x.Id == id);
             var data = _dbContext.Employees.Select(x => new EmployeeDto
@@ -94,10 +95,13 @@ namespace HRMS.Controllers
                 IsActive = x.IsActive,
                 Salary = x.Salary,
                 DepartmentId = x.DepartmentId,
-                DepartmentName = "",
+                DepartmentName = x.Department.Name,
                 ManagerId = x.ManagerId,
-                ManagerName = ""
+                ManagerName = x.Manager.FirstName + " " + x.Manager.LastName,
             }).FirstOrDefault(x => x.Id == id);
+
+            //var data = _dbContext.Employees.Include(x => x.Department).Include(x => x.Manager)
+            //    .FirstOrDefault(x => x.Id == id);
 
 
             if (data == null)
@@ -108,6 +112,11 @@ namespace HRMS.Controllers
             
             return Ok(data);
         }
+
+        // Eager Loading : Include
+        // Lazy Loading
+        // Projection : Select => Navigation Property
+
 
         // Request => Body, Query Parameters
         [HttpPost]
