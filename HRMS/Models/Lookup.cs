@@ -15,10 +15,3 @@ namespace HRMS.Models
     }
 }
 
-/*
- * 
- * 1 => Developer // Position? Department Type?
- * 2 => Manager // Position? Department Type?
- * 3 => Finance // Position? Department Type?
- * 4 => Technical // Position? Department Type?
- */

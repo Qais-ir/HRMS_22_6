@@ -8,7 +8,7 @@
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string? Email { get; set; } // (?) => Opteinal / Nullable
-        public string Position { get; set; }
+        public long? PositionId { get; set; }
         public DateTime BirthDate { get; set; }
         public string PhoneNumber { get; set; } // 07, +96279
         public bool IsActive { get; set; }
