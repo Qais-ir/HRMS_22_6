@@ -1,6 +1,7 @@
 ﻿using HRMS.DbContexts;
 using HRMS.Dtos.Employees;
 using HRMS.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,7 @@ using System.Runtime.Intrinsics.Arm;
 namespace HRMS.Controllers
 {
     // Data Annotations : Extra Informations
+    [Authorize]
     [Route("api/[controller]")] // api/Employees
     [ApiController]
     public class EmployeesController : ControllerBase
