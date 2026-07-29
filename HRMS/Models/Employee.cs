@@ -39,5 +39,9 @@ namespace HRMS.Models
         [ForeignKey("Lookup")]
         public long? PositionId { get; set; }
         public Lookup? Lookup { get; set; }
+
+        [ForeignKey("User")]
+        public long? UserId { get; set; }
+        public User? User { get; set; }
     }
 }
