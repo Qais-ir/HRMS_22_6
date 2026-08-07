@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HRMS.Models
 {
@@ -11,6 +12,11 @@ namespace HRMS.Models
 
         public string Description { get; set; }
         public int? FloorNumber { get; set; }
+
+        [ForeignKey("Lookup")]
+        public long? TypeId { get; set; }
+        public Lookup? Type { get; set; }
+
 
         // Navigation Property  
         //public ICollection<Employee>? Employees { get; set; }
