@@ -1,0 +1,43 @@
+<!-- <div class="title">
+ Title : {{title}}
+</div>
+<div class="title">
+ Number : {{number}}
+</div>
+<div class="title">
+ Boolean : {{bool}}
+</div>
+<div class="title">
+ Array : {{arr}}
+</div> -->
+
+<!-- (Ctrl + k) + s -->
+
+<h2>Before Angular 17</h2>
+<div *ngFor="let stu of students; index as i" class="title">
+  <span style="margin-right: 5px;">{{i + 1}}.</span>
+  <span style="margin-right: 5px;" [ngClass]="{'passed': stu.mark > 50, 'failed': stu.mark <= 50}">{{stu.name}}</span>
+  <span style="margin-right: 5px;" [ngStyle]="{'color': stu.mark > 50 ? 'green' : 'red' }">{{stu.mark}}%</span>
+  <span *ngIf="stu.mark > 50">Passed</span>
+  <span *ngIf="stu.mark <= 50">Failed</span>
+</div>
+<!-- Structural Directives : NgIf, NgFor, NgSwitch -->
+<!-- Attribute Directives : NgClass, NgStyle, NgModel -->
+<br>
+<br>
+<br>
+
+<h2>After Angular 17</h2>
+@for(stu of students; track stu.id; let i = $index){
+<div class="title">
+  <span style="margin-right: 5px;">{{i + 1}}.</span>
+  <span style="margin-right: 5px;">{{stu.name}}</span>
+  <span style="margin-right: 5px;">{{stu.mark}}%</span>
+  @if(stu.mark > 50){
+    <span>Passed</span>
+  }
+  @else{
+    <span>Failed</span>
+  }
+</div>
+}
