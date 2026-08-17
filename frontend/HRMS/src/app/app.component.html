@@ -13,26 +13,28 @@
 
 <!-- (Ctrl + k) + s -->
 
-<h2>Before Angular 17</h2>
+<!-- <h2>Before Angular 17</h2>
 <div *ngFor="let stu of students; index as i" class="title">
   <span style="margin-right: 5px;">{{i + 1}}.</span>
   <span style="margin-right: 5px;" [ngClass]="{'passed': stu.mark > 50, 'failed': stu.mark <= 50}">{{stu.name}}</span>
   <span style="margin-right: 5px;" [ngStyle]="{'color': stu.mark > 50 ? 'green' : 'red' }">{{stu.mark}}%</span>
   <span *ngIf="stu.mark > 50">Passed</span>
   <span *ngIf="stu.mark <= 50">Failed</span>
-</div>
+</div> -->
 <!-- Structural Directives : NgIf, NgFor, NgSwitch -->
 <!-- Attribute Directives : NgClass, NgStyle, NgModel -->
-<br>
+ <!-- Custom Directive -->
+<!-- <br>
 <br>
 <br>
 
 <h2>After Angular 17</h2>
 @for(stu of students; track stu.id; let i = $index){
 <div class="title">
-  <span style="margin-right: 5px;">{{i + 1}}.</span>
-  <span style="margin-right: 5px;">{{stu.name}}</span>
-  <span style="margin-right: 5px;">{{stu.mark}}%</span>
+  <span style="margin-right: 5px;">{{i + 1}}.</span> -->
+  <!-- <span style="margin-right: 5px;" [class.passed]="stu.mark > 50" [class.failed]="stu.mark <= 50">{{stu.name}}</span> -->
+  <!-- <span style="margin-right: 5px;" [class]="stu.mark > 50 ? 'passed' : 'failed'" >{{stu.name}}</span>
+  <span style="margin-right: 5px;" [style.color]="stu.mark > 50 ? 'green' : 'red'">{{stu.mark}}%</span>
   @if(stu.mark > 50){
     <span>Passed</span>
   }
@@ -40,4 +42,49 @@
     <span>Failed</span>
   }
 </div>
-}
+} -->
+
+
+<!-- Data Binding -->
+<!-- input[] ts => html -->
+<!-- output() html => ts -->
+<!-- One Way Data Binding -->
+
+ <!-- <div style="margin: 40px;">
+
+  <img width="50%" height="50%" id="image" 
+    [src]="images[currentIndex]" alt="random-image">
+
+  <br>
+  <button type="button" id="previous" [disabled]="currentIndex == 0" (click)="previous()">Previous</button>
+  <button type="button" id="next" [disabled]="currentIndex == images.length - 1" (click)="next()">Next</button>
+
+ </div> -->
+
+
+ <!-- Two Way Data Binding -->
+ <!-- NgModel -->
+ <!-- Form Control -->
+
+   <div style="margin: 40px">
+    <input type="text" [(ngModel)]="name">
+  </div>
+
+ <p class="title">
+  {{name}}
+ </p> 
+
+
+  <div style="margin: 40px">
+    <form [formGroup]="form">
+      <input type="text" formControlName="name">
+      <input type="text" formControlName="name">
+      <input type="text" formControlName="name">
+      <input type="text" formControlName="name">
+      <input type="text" formControlName="name">
+    </form>
+  </div>
+
+ <p class="title">
+  {{form.value.name}}
+ </p>
