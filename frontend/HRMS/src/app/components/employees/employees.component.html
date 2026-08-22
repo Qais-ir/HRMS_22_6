@@ -1,0 +1,231 @@
+
+<div class="container-fluid">
+
+    <div class="card">
+        <div class="card-header">
+            <h5>
+                <i class="bi bi-funnel-fill"></i>
+                Filter
+            </h5>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <!-- 12 Col -->
+                <!-- <div class="col-3" style="background-color: green; height: 1rem;"></div>
+                 <div class="col-3" style="background-color: red; height: 1rem;"></div>
+                 <div class="col-3" style="background-color: blue; height: 1rem;"></div>
+                 <div class="col-3" style="background-color: yellow; height: 1rem;"></div> -->
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <label for="employeeName"
+                        class="form-label">Employee Name</label>
+                    <input type="text" class="form-control"
+                        id="employeeName"
+                        placeholder="Name">
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <label for="employeePosition"
+                        class="form-label">Employee Position</label>
+                    <input type="text" class="form-control"
+                        id="employeePosition"
+                        placeholder="Position">
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <label for="status"
+                        class="form-label">Status</label>
+                    <input type="text" class="form-control"
+                        id="status"
+                        placeholder="Status">
+                </div>
+            </div>
+
+            <div class="mt-2 text-end">
+                <button type="button" class="btn btn-outline-secondary">
+                    <i class="bi bi-search"></i>
+                    Search
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-2">
+        <div class="card-header card-table-header">
+            <h5>Employees</h5>
+            <div>
+                <button type="button" class="btn btn-outline-secondary"
+                    data-bs-toggle="modal" data-bs-target="#saveEmployeeModal">
+                    <i class="bi bi-person-fill-add"></i>
+                    Add Employee
+                </button>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        @for(col of employeesTableColumns; track col){
+                        <th>{{col}}</th>
+                        }
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(employee of employees; track employee.id){
+                    <tr>
+                        <td>{{employee.firstName}} {{employee.lastName}}</td>
+                        <td>{{employee.positionName}}</td>
+                        <td>{{employee.birthDate | date:'dd/MM/yyyy'}}</td>
+                        <td>
+                            @if(employee.isActive){
+                            <span class="badge text-bg-success">Active</span>
+                            }
+                            @else {
+                            <span class="badge text-bg-danger">Inactive</span>
+                            }
+                        </td>
+                        <td>{{employee.email}}</td>
+                        <td>{{employee.salary | currency:'USD'}}</td>
+                        <td>{{employee.departmentName}}</td>
+                        <td>{{employee.managerName}}</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal modal-lg fade" id="saveEmployeeModal" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Save
+                    Employee</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="employeeForm">
+                    <div class="row align-end">
+
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <label for="firstName" class="form-label"> First
+                                Name</label>
+                            <input type="text" class="form-control"
+                                id="firsName"
+                                formControlName="firstName"
+                                placeholder="First Name">
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <label for="lastName" class="form-label"> Last
+                                Name</label>
+                            <input type="text" class="form-control"
+                                id="lastName"
+                                formControlName="lastName"
+                                placeholder="Last Name">
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <label for="birthDate" class="form-label">
+                                BirthDate</label>
+                            <input type="date" class="form-control"
+                                id="birthDate"
+                                formControlName="birthDate"
+                                placeholder="BirthDate">
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <label for="email" class="form-label"> Email</label>
+                            <input type="email" class="form-control" id="email"
+                                formControlName="email" placeholder="Email">
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <label for="phoneNumber" class="form-label"> Phone
+                                Number</label>
+                            <input type="text" class="form-control"
+                                id="phoneNumber"
+                                formControlName="phoneNumber"
+                                placeholder="Phone Number">
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <label for="startDate" class="form-label"> Start
+                                Date</label>
+                            <input type="date" class="form-control"
+                                id="startDate"
+                                formControlName="startDate"
+                                placeholder="Start Date">
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <label for="endDate" class="form-label"> End
+                                Date</label>
+                            <input type="date" class="form-control" id="endDate"
+                                formControlName="endDate"
+                                placeholder="End Date">
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <label for="department" class="form-label">
+                                Deaprtment</label>
+                            <select id="department" class="form-select"
+                                formControlName="departmentId">
+                                @for(item of departments; track item.id){
+                                <option [value]="item.id">{{item.name}}</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <label for="position" class="form-label">
+                                Positions</label>
+                            <select id="position" class="form-select"
+                                formControlName="positionId">
+                                @for(item of positions; track item.id){
+                                <option [value]="item.id">{{item.name}}</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <label for="manager" class="form-label">
+                                Manager</label>
+                            <select id="manager" class="form-select"
+                                formControlName="managerId">
+                                @for(item of managers; track item.id){
+                                <option [value]="item.id">{{item.name}}</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox"
+                                    role="switch" id="isActive"
+                                    formControlName="isActive">
+
+                                <label class="form-check-label"
+                                    for="isActive">Status</label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                    data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save
+                    changes</button>
+            </div>
+        </div>
+    </div>
+</div>

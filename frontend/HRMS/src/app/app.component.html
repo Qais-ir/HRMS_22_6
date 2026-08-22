@@ -1,146 +1,27 @@
- <div class="header" style>
+<nav class="navbar navbar-expand-lg bg-body-tertiary mb-2"  data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">HRMS</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Employees</a>
+        </li>
 
-  <h2>
-    Select And Submit To Join One Of Our Courses
-  </h2>
+        <li class="nav-item">
+          <a class="nav-link " aria-current="page" href="#">Departments</a>
+        </li>
 
-  <div class="content">
-    <div class="account">
-      <span class="email account-value">q.Irshaid@gmail.com</span>
-      <span class="switch-account account-value">
-        <a href="https://www.google.com/account/about/?hl=en-US"
-          target="_blank">
-          Switch Account
-        </a>
-      </span>
-      <span class="icon account-value">
-        <i class="fa-solid fa-cloud-arrow-up"></i>
-      </span>
-    </div>
+        <li class="nav-item">
+          <a class="nav-link " aria-current="page" href="#">Vacations</a>
+        </li>
 
-    <p class="description">
-      The name, email address and photo associated with your
-      Google Account will be recorded when you upload files and
-      submit this form
-    </p>
+      </ul>
 
-    <p class="warning">
-      * Indecates required question
-    </p>
-  </div>
-
-</div>
-
-<form [formGroup]="form">
-  <div class="question">
-    <div class="title">
-      <label for="email">
-        Email
-        <span class="required-icon">*</span>
-      </label>
-    </div>
-    <div class="input-field">
-      <input id="email" type="email" formControlName="email"
-       [class.red-border]="form.get('email')?.invalid && form.get('email')?.touched"
-        placeholder="Your email address">
     </div>
   </div>
+</nav>
 
-  <div class="question">
-    <div class="title">
-      <label for="name">
-        Name
-        <span class="required-icon">*</span>
-      </label>
-    </div>
-    <div class="input-field">
-      <input id="name" type="text"
-      [class.red-border]="form.get('name')?.invalid && form.get('name')?.touched"
-       formControlName="name" placeholder="Your full name" >
-    </div>
-  </div>
-  <div class="question">
-    <div class="title">
-      <label for="phone">
-        Phone Number
-        <span class="required-icon">*</span>
-      </label>
-    </div>
-    <div class="input-field">
-      <input id="phone" type="text"
-      [class.red-border]="form.get('phone')?.invalid && form.get('phone')?.touched"
-       formControlName="phone"
-        placeholder="Your phone number" >
-    </div>
-  </div>
-  <div class="question">
-    <div class="title">
-      <label for="age">
-        Age
-        <!-- <span class="required-icon">*</span> -->
-      </label>
-    </div>
-    <div class="input-field">
-      <input id="age" type="number"
-      [class.red-border]="form.get('age')?.invalid && form.get('age')?.touched"
-       placeholder="Your age" formControlName="age">
-    </div>
-  </div>
-  <div class="question">
-    <div class="title">
-      <label for="course">
-        Course
-        <span class="required-icon">*</span>
-      </label>
-    </div>
-    <div class="input-field">
-      <!-- <input id="age" type="number" placeholder="Your age"> -->
-      <select id="course" formControlName="courseId"
-      [class.red-border]="form.get('courseId')?.invalid && form.get('courseId')?.touched"
-      >
-        @for(course of courses; track course.id){
-          <option [value]="course.id">{{course.name}}</option>
-        }
-      </select>
-    </div>
-  </div>
-  <div class="actions">
-    <button type="button" class="action-btn submit-btn" [disabled]="form.invalid" (click)="submit()">Submit</button>
-    <button type="button" class="action-btn reset-btn" (click)="resetForm()">Clear Form</button>
-  </div>
-</form>
-
-<!-- <p class="title">
-  {{form.valid}}
-</p> -->
-
-<div class="footer">
-  <p class="copy-right">
-    This form was created inside Princess Sumaya University for
-    Technology. Does this form look suspicious? <a href>report</a>
-  </p>
-  <p class="logo">
-    Google Forms
-  </p>
-</div>
-
-
-<p class="title">
- {{ 'Employee' | uppercase}}
-</p>
-<p class="title">
- {{ 'Employee' | lowercase}}
-</p>
-
-
-<p class="title">
- {{ price | currency:'EUR' }}
-</p>
-
-<p class="title">
- {{ date | date:'dd/MM/yyyy hh:mm'}}
-</p>
-
-<p class="title">
- {{ date }}
-</p>
+<app-employees></app-employees>
